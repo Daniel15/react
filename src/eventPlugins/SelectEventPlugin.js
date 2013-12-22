@@ -26,7 +26,6 @@ var ReactInputSelection = require('ReactInputSelection');
 var SyntheticEvent = require('SyntheticEvent');
 
 var getActiveElement = require('getActiveElement');
-var isEventSupported = require('isEventSupported');
 var isTextInputElement = require('isTextInputElement');
 var keyOf = require('keyOf');
 var shallowEqual = require('shallowEqual');
@@ -43,11 +42,9 @@ var eventTypes = {
 };
 
 var useSelectionChange = false;
-var useSelect = false;
 
 if (ExecutionEnvironment.canUseDOM) {
   useSelectionChange = 'onselectionchange' in document;
-  useSelect = isEventSupported('select');
 }
 
 var activeElement = null;
@@ -195,6 +192,7 @@ var SelectEventPlugin = {
       case topLevelTypes.topMouseDown:
         mouseDown = true;
         break;
+      case topLevelTypes.topContextMenu:
       case topLevelTypes.topMouseUp:
         mouseDown = false;
         return constructSelectEvent(nativeEvent);

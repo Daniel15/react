@@ -19,8 +19,8 @@
 
 "use strict";
 
+var DOMPropertyOperations = require('DOMPropertyOperations');
 var ReactComponent = require('ReactComponent');
-var ReactMount = require('ReactMount');
 
 var escapeTextForBrowser = require('escapeTextForBrowser');
 var mixInto = require('mixInto');
@@ -65,7 +65,7 @@ mixInto(ReactTextComponent, {
       mountDepth
     );
     return (
-      '<span ' + ReactMount.ATTR_NAME + '="' + rootID + '">' +
+      '<span ' + DOMPropertyOperations.createMarkupForID(rootID) + '>' +
         escapeTextForBrowser(this.props.text) +
       '</span>'
     );
@@ -74,11 +74,12 @@ mixInto(ReactTextComponent, {
   /**
    * Updates this component by updating the text content.
    *
-   * @param {object} nextProps Contains the next text content.
+   * @param {object} nextComponent Contains the next text content.
    * @param {ReactReconcileTransaction} transaction
    * @internal
    */
-  receiveProps: function(nextProps, transaction) {
+  receiveComponent: function(nextComponent, transaction) {
+    var nextProps = nextComponent.props;
     if (nextProps.text !== this.props.text) {
       this.props.text = nextProps.text;
       ReactComponent.DOMIDOperations.updateTextContentByID(

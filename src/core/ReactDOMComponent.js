@@ -25,7 +25,6 @@ var DOMPropertyOperations = require('DOMPropertyOperations');
 var ReactComponent = require('ReactComponent');
 var ReactEventEmitter = require('ReactEventEmitter');
 var ReactMultiChild = require('ReactMultiChild');
-var ReactMount = require('ReactMount');
 var ReactPerf = require('ReactPerf');
 
 var escapeTextForBrowser = require('escapeTextForBrowser');
@@ -144,8 +143,8 @@ ReactDOMComponent.Mixin = {
       }
     }
 
-    var escapedID = escapeTextForBrowser(this._rootNodeID);
-    return ret + ' ' + ReactMount.ATTR_NAME + '="' + escapedID + '">';
+    var idMarkup = DOMPropertyOperations.createMarkupForID(this._rootNodeID);
+    return ret + ' ' + idMarkup + '>';
   },
 
   /**
@@ -179,9 +178,13 @@ ReactDOMComponent.Mixin = {
     return '';
   },
 
-  receiveProps: function(nextProps, transaction) {
-    assertValidProps(nextProps);
-    ReactComponent.Mixin.receiveProps.call(this, nextProps, transaction);
+  receiveComponent: function(nextComponent, transaction) {
+    assertValidProps(nextComponent.props);
+    ReactComponent.Mixin.receiveComponent.call(
+      this,
+      nextComponent,
+      transaction
+    );
   },
 
   /**
@@ -196,8 +199,13 @@ ReactDOMComponent.Mixin = {
   updateComponent: ReactPerf.measure(
     'ReactDOMComponent',
     'updateComponent',
-    function(transaction, prevProps) {
-      ReactComponent.Mixin.updateComponent.call(this, transaction, prevProps);
+    function(transaction, prevProps, prevOwner) {
+      ReactComponent.Mixin.updateComponent.call(
+        this,
+        transaction,
+        prevProps,
+        prevOwner
+      );
       this._updateDOMProperties(prevProps);
       this._updateDOMChildren(prevProps, transaction);
     }

@@ -8,6 +8,10 @@ React is a JavaScript library for building user interfaces.
 
 [Learn how to use React in your own project.](http://facebook.github.io/react/docs/getting-started.html)
 
+## The `react` npm package has recently changed!
+
+If you're looking for jeffbski's [React.js](https://github.com/jeffbski/react) project, it's now in `npm` as `reactjs` rather than `react`.
+
 ## Examples
 
 We have several examples [on the website](http://facebook.github.io/react/). Here is the first one to get you started:
@@ -28,7 +32,7 @@ React.renderComponent(
 
 This example will render "Hello John" into a container on the page.
 
-You'll notice that we used an XML-like syntax; [we call it JSX](http://facebook.github.io/react/docs/jsx-in-depth.html). JSX is not required to use React, but it makes code more readable, and writing it feels like writing HTML. A simple transform is included with React that allows converting JSX into native JavaScript for browsers to digest.
+You'll notice that we used an HTML-like syntax; [we call it JSX](http://facebook.github.io/react/docs/jsx-in-depth.html). JSX is not required to use React, but it makes code more readable, and writing it feels like writing HTML. A simple transform is included with React that allows converting JSX into native JavaScript for browsers to digest.
 
 ## Installation
 
@@ -36,12 +40,12 @@ The fastest way to get started is to serve JavaScript from the CDN (also availab
 
 ```html
 <!-- The core React library -->
-<script src="http://fb.me/react-0.5.1.js"></script>
+<script src="http://fb.me/react-0.8.0.js"></script>
 <!-- In-browser JSX transformer, remove when pre-compiling JSX. -->
-<script src="http://fb.me/JSXTransformer-0.5.1.js"></script>
+<script src="http://fb.me/JSXTransformer-0.8.0.js"></script>
 ```
 
-We've also built a [starter kit](http://facebook.github.io/react/downloads/react-0.5.1.zip) which might be useful if this is your first time using React. It includes a webpage with an example of using React with live code.
+We've also built a [starter kit](http://facebook.github.io/react/downloads/react-0.8.0.zip) which might be useful if this is your first time using React. It includes a webpage with an example of using React with live code.
 
 If you'd like to use [bower](http://bower.io), it's as easy as:
 
